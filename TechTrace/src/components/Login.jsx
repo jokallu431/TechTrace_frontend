@@ -1,6 +1,64 @@
 import React from 'react'
-
+import { useRef } from 'react';
+import { Link, useNavigate} from 'react-router';
 const Login = () => {
+  const emailRef = useRef();
+        const passwordRef = useRef();
+        const navigate = useNavigate();
+        const navigateTo = (path) => () => {
+            navigate(path);
+        };
+        const handleSubmit = (e) => { 
+        e.preventDefault();
+
+        // Collect form data using useRef
+        const formData = {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+        };
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: JSON.stringify(formData),
+        redirect: "follow"
+        };
+        
+        console.log("formdata",formData);
+       
+        fetch("http://localhost:4000/users/login", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Login successful:", result);
+          localStorage.setItem("token", result.token);
+          // Navigate to another page on success
+          fetchUserDetails(result.token);
+        })
+        .catch((error) => console.error("Error while logging", error));
+    };
+    const fetchUserDetails = (token) => {
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        myHeaders.append("Content-Type", "application/json");
+    
+        fetch("http://localhost:4000/users/verify", {
+          method: "GET",
+          headers: myHeaders,
+        })
+          .then((response) => response.json())
+          .then((userDetails) => {
+            console.log("User details fetched:", userDetails);
+              localStorage.setItem("role", userDetails.role);
+              localStorage.setItem("id", userDetails._id);
+            // Redirect to dashboard
+            navigateTo("/dashboard",)(); // Replace with your routing logic
+
+            console.log("after navigate",userDetails.role);
+          })
+      };
   return (
     <>
 <div className="container">
@@ -27,25 +85,25 @@ const Login = () => {
               <p className="text-center small">Enter your username & password to login</p>
             </div>
 
-            <form className="row g-3 needs-validation" novalidate>
+            <form className="row g-3 needs-validation" novalidate onSubmit={handleSubmit}>
 
               <div className="col-12">
                 <label for="yourUsername" className="form-label">Username</label>
                 <div className="input-group has-validation">
                   <span className="input-group-text" id="inputGroupPrepend">@</span>
-                  <input type="text" name="username" className="form-control" id="yourUsername" required/>
+                  <input type="email" ref={emailRef} name="username" className="form-control" id="yourUsername" required/>
                   <div className="invalid-feedback">Please enter your username.</div>
                 </div>
               </div>
 
               <div className="col-12">
                 <label for="yourPassword" className="form-label">Password</label>
-                <input type="password" name="password" className="form-control" id="yourPassword" required/>
+                <input type="password" ref={passwordRef} name="password" className="form-control" id="yourPassword" required/>
                 <div className="invalid-feedback">Please enter your password!</div>
               </div>
 
               <div className="col-12">
-                <button className="btn btn-primary w-100" type="submit">Login</button>
+                <button className="btn btn-primary w-100">Login</button>
               </div>
             </form>
 

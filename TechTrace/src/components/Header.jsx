@@ -1,6 +1,17 @@
 import React from 'react'
+import profile from '../assets/img/profile-img.jpg'
+import logo from '../assets/img/tech_logo.png'
+import { Link, Links, useNavigate } from 'react-router'
 
 const Header = ({ toggleSidebar }) => {
+  const navigate = useNavigate();
+  const navigateTo = (path) => () => {
+      navigate(path);
+  };
+  const handleLogout =()=>{
+    localStorage.clear();
+    navigateTo("/login",)();
+  }
   return (
     <>
          {/* <!-- ======= Header ======= --> */}
@@ -8,11 +19,11 @@ const Header = ({ toggleSidebar }) => {
           id="header"
           className="header fixed-top d-flex align-items-center"
         >
+          <img src={logo}  alt="TechTrace_logo" style={{ width: "77px" }} />
           <div className="d-flex align-items-center justify-content-between">
-            <a href="index.html" className="logo d-flex align-items-center">
-              <img src="src/assets/img/tech_logo.png" alt="TechTrace_logo" />
-              <span className="d-none d-lg-block">TechTrace</span>
-            </a>
+            <Link className="logo " >
+              <span >TechTrace</span>
+            </Link>
             <i
               className="bi bi-list toggle-sidebar-btn"
               onClick={toggleSidebar}
@@ -158,7 +169,7 @@ const Header = ({ toggleSidebar }) => {
                   <li className="message-item">
                     <a href="#">
                       <img
-                        src="assets/img/messages-1.jpg"
+                        src="src/assets/img/messages-1.jpg"
                         alt=""
                         className="rounded-circle"
                       />
@@ -179,7 +190,7 @@ const Header = ({ toggleSidebar }) => {
                   <li className="message-item">
                     <a href="#">
                       <img
-                        src="assets/img/messages-2.jpg"
+                        src="src/assets/img/messages-2.jpg"
                         alt=""
                         className="rounded-circle"
                       />
@@ -200,7 +211,7 @@ const Header = ({ toggleSidebar }) => {
                   <li className="message-item">
                     <a href="#">
                       <img
-                        src="assets/img/messages-3.jpg"
+                        src="src/assets/img/messages-3.jpg"
                         alt=""
                         className="rounded-circle"
                       />
@@ -233,7 +244,7 @@ const Header = ({ toggleSidebar }) => {
                   data-bs-toggle="dropdown"
                 >
                   <img
-                    src="assets/img/profile-img.jpg"
+                    src={profile}
                     alt="Profile"
                     className="rounded-circle"
                   />
@@ -253,13 +264,12 @@ const Header = ({ toggleSidebar }) => {
                   </li>
 
                   <li>
-                    <a
+                    <Link 
                       className="dropdown-item d-flex align-items-center"
-                      href="users-profile.html"
                     >
                       <i className="bi bi-person"></i>
                       <span>My Profile</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <hr className="dropdown-divider" />
@@ -292,13 +302,13 @@ const Header = ({ toggleSidebar }) => {
                   </li>
 
                   <li>
-                    <a
+                    <Link to="/login"
                       className="dropdown-item d-flex align-items-center"
-                      href="#"
-                    >
+                      >
                       <i className="bi bi-box-arrow-right"></i>
-                      <span>Sign Out</span>
-                    </a>
+                      
+                      <span onClick={handleLogout}>Sign Out</span>
+                    </Link>
                   </li>
                 </ul>
                 {/* <!-- End Profile Dropdown Items --> */}
