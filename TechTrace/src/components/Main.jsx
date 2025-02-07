@@ -55,21 +55,15 @@ const Main = () => {
 
                       <div className="card-body">
                         <h5 className="card-title">
-                          Sales <span>| Today</span>
+                          Unassigned Tasks <span>| Today</span>
                         </h5>
 
                         <div className="d-flex align-items-center">
                           <div className="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i className="bi bi-cart"></i>
+                            <i className="bi bi-files"></i>
                           </div>
                           <div className="ps-3">
                             <h6>145</h6>
-                            <span className="text-success small pt-1 fw-bold">
-                              12%
-                            </span>{" "}
-                            <span className="text-muted small pt-2 ps-1">
-                              increase
-                            </span>
                           </div>
                         </div>
                       </div>
@@ -109,21 +103,15 @@ const Main = () => {
 
                       <div className="card-body">
                         <h5 className="card-title">
-                          Revenue <span>| This Month</span>
+                        &nbsp; Pending &nbsp;Tasks&nbsp;&nbsp; <span>| Today</span>
                         </h5>
 
                         <div className="d-flex align-items-center">
                           <div className="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i className="bi bi-currency-dollar"></i>
+                            <i className="bi bi-folder"></i>
                           </div>
                           <div className="ps-3">
-                            <h6>$3,264</h6>
-                            <span className="text-success small pt-1 fw-bold">
-                              8%
-                            </span>{" "}
-                            <span className="text-muted small pt-2 ps-1">
-                              increase
-                            </span>
+                            <h6>10</h6>
                           </div>
                         </div>
                       </div>
@@ -163,21 +151,15 @@ const Main = () => {
 
                       <div className="card-body">
                         <h5 className="card-title">
-                          Customers <span>| This Year</span>
+                          Compeleted Tasks <span>| Today</span>
                         </h5>
 
                         <div className="d-flex align-items-center">
                           <div className="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i className="bi bi-people"></i>
+                            <i className="bi bi-award"></i>
                           </div>
                           <div className="ps-3">
-                            <h6>1244</h6>
-                            <span className="text-danger small pt-1 fw-bold">
-                              12%
-                            </span>{" "}
-                            <span className="text-muted small pt-2 ps-1">
-                              decrease
-                            </span>
+                            <h6>12</h6>
                           </div>
                         </div>
                       </div>

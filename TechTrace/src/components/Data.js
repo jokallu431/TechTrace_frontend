@@ -67,7 +67,7 @@ const sidebarData = {
   "admin": [
     {
       "name": "Admin Dashboard",
-      "link": "dashboard",
+      "link": "../dashboard",
       "icon": "bi bi-grid"
     },
     {
@@ -81,7 +81,7 @@ const sidebarData = {
         },
         {
           "name": "User List",
-          "link": "components-alerts.html",
+          "link": "user_list",
           "icon": "bi bi-circle"
         }
       ]
@@ -92,7 +92,7 @@ const sidebarData = {
       "sub_items": [
         {
           "name": "Create Branch",
-          "link": "forms-elements.html",
+          "link": "create_branch",
           "icon": "bi bi-circle"
         },
         {
@@ -155,7 +155,7 @@ const sidebarData = {
     },
     {
       "name": "Profile",
-      "link": "users-profile.html",
+      "link": "profiles",
       "icon": "bi bi-person"
     },
     {
@@ -187,7 +187,7 @@ const sidebarData = {
   "technician": [
     {
       "name": "Technician Dashboard",
-      "link": "dashboard",
+      "link": "../dashboard",
       "icon": "bi bi-grid"
     },
     {

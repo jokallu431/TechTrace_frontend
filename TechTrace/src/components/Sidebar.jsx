@@ -44,7 +44,7 @@
 // export default Sidebar;
 
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 
 const Sidebar = ({ isOpen, sidebarData }) => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -52,6 +52,7 @@ const Sidebar = ({ isOpen, sidebarData }) => {
 
   const toggleDropdown = (name) => {
     setOpenDropdown(openDropdown === name ? null : name);
+    navigate("/dashboard");
   };
 
   return (
@@ -71,10 +72,10 @@ const Sidebar = ({ isOpen, sidebarData }) => {
                 <ul className={`nav-content ${openDropdown === item.name ? "show" : "hidden"}`}>
                   {item.sub_items.map((sub, subIndex) => (
                     <li key={subIndex}>
-                      <Link to={sub.link}>
+                      <NavLink to={sub.link}>
                         <i className={sub.icon}></i>
                         <span>{sub.name}</span>
-                      </Link>
+                      </NavLink>
                     </li>
                   ))}
                 </ul>

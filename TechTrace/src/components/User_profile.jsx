@@ -1,6 +1,78 @@
-import React from "react";
-import profile from "../assets/img/profile-img.jpg";
+import { Link,useNavigate} from "react-router";
+import React, {useRef,useState,useEffect}from 'react'
+import { verifyUser } from './api';
+
+
+
 const User_profile = () => {
+  const [file, setFile] = useState();
+    function handleChange(e) {
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
+    }
+    function handleDelete() {
+    setFile(null);
+  }
+  const imageRef =useRef();
+  const nameRef = useRef();
+  const phoneRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const branchesRef = useRef();
+  const roleRef = useRef();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Collect form data using useRef
+    const formData = new FormData();
+  formData.append("name", nameRef.current.value);
+  formData.append("phone", phoneRef.current.value);
+  formData.append("email", emailRef.current.value);
+  formData.append("password", passwordRef.current.value);
+  formData.append("branch", branchesRef.current.value);
+  formData.append("role", roleRef.current.value);
+  
+  // Append the selected file correctly
+  if (imageRef.current.files.length > 0) {
+    formData.append("image", imageRef.current.files[0]);
+  }
+
+  try {
+      const response = await fetch("http://localhost:4000/users/profile", {
+        method: "POST",
+        body: formData,
+      });
+  
+      const result = await response.json();
+      console.log("Profile created successfully:", result);
+  
+      if (response.ok) {
+        navigate("/dashboard");
+      } else {
+        console.error("Error:", result);
+      }
+    } catch (error) {
+      console.error("Error creating profile:", error);
+    }
+  };
+
+  const [userDetails, setUserDetails] = useState([]);
+    const userToken = localStorage.getItem("token");
+    useEffect(() => {
+        verifyUser(
+            userToken,
+        (result) => {
+          setUserDetails(result);
+        },
+        () => {
+            setUserDetails(null);
+        }
+      );
+    }, []);
+  console.log("Userdetails",userDetails);
+  
   return (
     <>
       <main id="main" class="main">
@@ -9,7 +81,7 @@ const User_profile = () => {
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <Link to={"/dashboard"}>Home</Link>
               </li>
               <li class="breadcrumb-item">Users</li>
               <li class="breadcrumb-item active">Profile</li>
@@ -23,9 +95,8 @@ const User_profile = () => {
             <div class="col-xl-4">
               <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                  <img src={profile} alt="Profile" class="rounded-circle" />
-                  <h2>Kevin Anderson</h2>
-                  <h3>Web Designer</h3>
+                  <img src={`http://localhost:4000${userDetails.image}`} style={{width:80,height:80}} alt="Profile" class="rounded-circle" />
+                  <h2>{userDetails.name}</h2>
                   <div class="social-links mt-2">
                     <a href="#" class="twitter">
                       <i class="bi bi-twitter"></i>
@@ -84,57 +155,43 @@ const User_profile = () => {
                       class="tab-pane fade show active profile-overview"
                       id="profile-overview"
                     >
-                      <h5 class="card-title">About</h5>
-                      <p class="small fst-italic">
-                        Sunt est soluta temporibus accusantium neque nam maiores
-                        cumque temporibus. Tempora libero non est unde veniam
-                        est qui dolor. Ut sunt iure rerum quae quisquam autem
-                        eveniet perspiciatis odit. Fuga sequi sed ea saepe at
-                        unde.
-                      </p>
-
                       <h5 class="card-title">Profile Details</h5>
 
                       <div class="row">
-                        <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                        <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                        <div class="col-lg-3 col-md-4 label ">Username</div>
+                        <div class="col-lg-9 col-md-8">{userDetails.name}</div>
                       </div>
 
                       <div class="row">
-                        <div class="col-lg-3 col-md-4 label">Company</div>
+                        <div class="col-lg-3 col-md-4 label">Branch</div>
                         <div class="col-lg-9 col-md-8">
-                          Lueilwitz, Wisoky and Leuschke
+                        {userDetails.branch}
                         </div>
                       </div>
 
                       <div class="row">
-                        <div class="col-lg-3 col-md-4 label">Job</div>
-                        <div class="col-lg-9 col-md-8">Web Designer</div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">Country</div>
-                        <div class="col-lg-9 col-md-8">USA</div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">Address</div>
-                        <div class="col-lg-9 col-md-8">
-                          A108 Adam Street, New York, NY 535022
-                        </div>
+                        <div class="col-lg-3 col-md-4 label">Role</div>
+                        <div class="col-lg-9 col-md-8">{userDetails.role}</div>
                       </div>
 
                       <div class="row">
                         <div class="col-lg-3 col-md-4 label">Phone</div>
                         <div class="col-lg-9 col-md-8">
-                          (436) 486-3538 x29071
+                          {userDetails.phone}
                         </div>
                       </div>
 
                       <div class="row">
                         <div class="col-lg-3 col-md-4 label">Email</div>
                         <div class="col-lg-9 col-md-8">
-                          k.anderson@example.com
+                          {userDetails.email}
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Branch Address</div>
+                        <div class="col-lg-9 col-md-8">
+                          A108 Adam Street, New York, NY 535022
                         </div>
                       </div>
                     </div>
@@ -153,135 +210,87 @@ const User_profile = () => {
                             Profile Image
                           </label>
                           <div class="col-md-8 col-lg-9">
-                            <img src={profile} alt="Profile" />
-                            <div class="pt-2">
-                              <button
-                                href="#"
-                                class="btn btn-primary btn-sm"
-                                type="file"
-                                title="Upload new profile image"
-                              >
-                                <i class="bi bi-upload"></i>
-                              </button>
-                              <a
-                                href="#"
-                                class="btn btn-danger btn-sm"
-                                title="Remove my profile image"
-                              >
-                                <i class="bi bi-trash"></i>
-                              </a>
-                            </div>
-                          </div>
+                      {file != null ? <img src={file} alt="Profile"style={{width:80,height:70,borderRadius:5}} /> : ""}
+                      <div class="pt-2">
+                        <input
+                          type="file"
+                          name="image"
+                          accept="image/jpeg,image/jpg,image/png"
+                          data-original-title="upload photos"
+                          onChange={handleChange}
+                          className="d-none"
+                          id="profileImageInput"
+                        />
+                        {file == null ? <label
+                          htmlFor="profileImageInput"
+                          class="btn btn-primary btn-sm text-white"
+                        >
+                          <i class="bi bi-upload"></i> Upload
+                        </label>
+                        :
+                        <button
+                          class="btn btn-danger btn-sm"
+                          title="Remove my profile image"
+                          onClick={handleDelete}
+                        >
+                          <i class="bi bi-trash"></i> Remove
+                        </button>
+                        
+                        }
+                      </div>
+                    </div>
                         </div>
 
                         <div class="row mb-3">
                           <label
-                            for="fullName"
+                            for="UserName"
                             class="col-md-4 col-lg-3 col-form-label"
                           >
-                            Full Name
+                            Username
                           </label>
                           <div class="col-md-8 col-lg-9">
                             <input
-                              name="fullName"
+                              name="UserName"
                               type="text"
                               class="form-control"
-                              id="fullName"
-                              defaultValue="Kevin Anderson"
+                              id="UserName"
+                              defaultValue={userDetails.name}
                             />
                           </div>
                         </div>
 
                         <div class="row mb-3">
                           <label
-                            for="about"
+                            for="branch"
                             class="col-md-4 col-lg-3 col-form-label"
                           >
-                            About
-                          </label>
-                          <div class="col-md-8 col-lg-9">
-                            <textarea
-                              name="about"
-                              class="form-control vh-10"
-                              id="about"
-                            >
-                              Sunt est soluta temporibus accusantium neque nam
-                              maiores cumque temporibus. Tempora libero non est
-                              unde veniam est qui dolor. Ut sunt iure rerum quae
-                              quisquam autem eveniet perspiciatis odit. Fuga
-                              sequi sed ea saepe at unde.
-                            </textarea>
-                          </div>
-                        </div>
-
-                        <div class="row mb-3">
-                          <label
-                            for="company"
-                            class="col-md-4 col-lg-3 col-form-label"
-                          >
-                            Company
+                            Branch
                           </label>
                           <div class="col-md-8 col-lg-9">
                             <input
-                              name="company"
+                              name="branch"
                               type="text"
                               class="form-control"
-                              id="company"
-                              defaultValue="Lueilwitz, Wisoky and Leuschke"
+                              id="branch"
+                              defaultValue={userDetails.branch}
                             />
                           </div>
                         </div>
 
                         <div class="row mb-3">
                           <label
-                            for="Job"
+                            for="Role"
                             class="col-md-4 col-lg-3 col-form-label"
                           >
-                            Job
+                            Role
                           </label>
                           <div class="col-md-8 col-lg-9">
                             <input
-                              name="job"
+                              name="role"
                               type="text"
                               class="form-control"
-                              id="Job"
-                              defaultValue="Web Designer"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row mb-3">
-                          <label
-                            for="Country"
-                            class="col-md-4 col-lg-3 col-form-label"
-                          >
-                            Country
-                          </label>
-                          <div class="col-md-8 col-lg-9">
-                            <input
-                              name="country"
-                              type="text"
-                              class="form-control"
-                              id="Country"
-                              defaultValue="USA"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row mb-3">
-                          <label
-                            for="Address"
-                            class="col-md-4 col-lg-3 col-form-label"
-                          >
-                            Address
-                          </label>
-                          <div class="col-md-8 col-lg-9">
-                            <input
-                              name="address"
-                              type="text"
-                              class="form-control"
-                              id="Address"
-                              defaultValue="A108 Adam Street, New York, NY 535022"
+                              id="role"
+                              defaultValue={userDetails.role}
                             />
                           </div>
                         </div>
@@ -299,7 +308,7 @@ const User_profile = () => {
                               type="text"
                               class="form-control"
                               id="Phone"
-                              defaultValue="(436) 486-3538 x29071"
+                              defaultValue={userDetails.phone}
                             />
                           </div>
                         </div>
@@ -317,79 +326,7 @@ const User_profile = () => {
                               type="email"
                               class="form-control"
                               id="Email"
-                              defaultValue="k.anderson@example.com"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row mb-3">
-                          <label
-                            for="Twitter"
-                            class="col-md-4 col-lg-3 col-form-label"
-                          >
-                            Twitter Profile
-                          </label>
-                          <div class="col-md-8 col-lg-9">
-                            <input
-                              name="twitter"
-                              type="text"
-                              class="form-control"
-                              id="Twitter"
-                              defaultValue="https://twitter.com/#"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row mb-3">
-                          <label
-                            for="Facebook"
-                            class="col-md-4 col-lg-3 col-form-label"
-                          >
-                            Facebook Profile
-                          </label>
-                          <div class="col-md-8 col-lg-9">
-                            <input
-                              name="facebook"
-                              type="text"
-                              class="form-control"
-                              id="Facebook"
-                              defaultValue="https://facebook.com/#"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row mb-3">
-                          <label
-                            for="Instagram"
-                            class="col-md-4 col-lg-3 col-form-label"
-                          >
-                            Instagram Profile
-                          </label>
-                          <div class="col-md-8 col-lg-9">
-                            <input
-                              name="instagram"
-                              type="text"
-                              class="form-control"
-                              id="Instagram"
-                              defaultValue="https://instagram.com/#"
-                            />
-                          </div>
-                        </div>
-
-                        <div class="row mb-3">
-                          <label
-                            for="Linkedin"
-                            class="col-md-4 col-lg-3 col-form-label"
-                          >
-                            Linkedin Profile
-                          </label>
-                          <div class="col-md-8 col-lg-9">
-                            <input
-                              name="linkedin"
-                              type="text"
-                              class="form-control"
-                              id="Linkedin"
-                              defaultValue="https://linkedin.com/#"
+                              defaultValue={userDetails.email}
                             />
                           </div>
                         </div>

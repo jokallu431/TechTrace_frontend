@@ -1,13 +1,29 @@
-import React from 'react'
-import profile from '../assets/img/profile-img.jpg'
 import logo from '../assets/img/tech_logo.png'
-import { Link, Links, useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import React, {useState,useEffect}from 'react'
+import { verifyUser } from './api';
 
 const Header = ({ toggleSidebar }) => {
   const navigate = useNavigate();
   const navigateTo = (path) => () => {
       navigate(path);
   };
+
+  const [userDetails, setUserDetails] = useState([]);
+    const userToken = localStorage.getItem("token");
+    useEffect(() => {
+        verifyUser(
+            userToken,
+        (result) => {
+          setUserDetails(result);
+        },
+        () => {
+            setUserDetails(null);
+        }
+      );
+    }, []);
+  
+
   const handleLogout =()=>{
     localStorage.clear();
     navigateTo("/login",)();
@@ -244,19 +260,20 @@ const Header = ({ toggleSidebar }) => {
                   data-bs-toggle="dropdown"
                 >
                   <img
-                    src={profile}
+                    src={`http://localhost:4000${userDetails.image}`}
                     alt="Profile"
+                    style={{width:40,height:40}}
                     className="rounded-circle"
                   />
                   <span className="d-none d-md-block dropdown-toggle ps-2">
-                    K. Anderson
+                    {userDetails.name}
                   </span>
                 </a>
                 {/* <!-- End Profile Iamge Icon --> */}
 
                 <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                   <li className="dropdown-header">
-                    <h6>Kevin Anderson</h6>
+                    <h6>{userDetails.name}</h6>
                     <span>Web Designer</span>
                   </li>
                   <li>
@@ -264,7 +281,7 @@ const Header = ({ toggleSidebar }) => {
                   </li>
 
                   <li>
-                    <Link 
+                    <Link to={"profiles"}
                       className="dropdown-item d-flex align-items-center"
                     >
                       <i className="bi bi-person"></i>

@@ -611,8 +611,13 @@ h6 {
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
+  transition: all 0.3s;
 }
-
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s;
+}
 @media (max-width: 1199px) {
   .sidebar {
     left: -300px;
@@ -629,6 +634,15 @@ h6 {
   background-color: #aab7cf;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.main-layout {
+  display: flex;
+  flex: 1;
+}
 @media (min-width: 1200px) {
 
   #main,
@@ -827,13 +841,14 @@ h6 {
 }
 
 .dashboard .revenue-card .card-icon {
-  color: #2eca6a;
-  background: #e0f8e9;
+  color: #ff771d;
+  background: #ffecdf;
 }
 
 .dashboard .customers-card .card-icon {
-  color: #ff771d;
-  background: #ffecdf;
+  color: #2eca6a;
+  background: #e0f8e9;
+  
 }
 
 /* Activity */

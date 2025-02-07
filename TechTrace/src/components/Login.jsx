@@ -71,7 +71,7 @@ const Login = () => {
         <div className="d-flex justify-content-center py-4">
           <a href="index.html" className="logo d-flex align-items-center w-auto">
             <img src="src/assets/img/tech_logo.png" alt=""/>
-            <span className="d-none d-lg-block">NiceAdmin</span>
+            <span className="d-none d-lg-block">TechTrace</span>
           </a>
         </div>
         {/* <!-- End Logo --> */}
@@ -115,7 +115,7 @@ const Login = () => {
           <!-- You can delete the links only if you purchased the pro version. -->
           <!-- Licensing information: https://bootstrapmade.com/license/ -->
           <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ --> */}
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          Designed by <Link>Kallupurakal Joshua Francis</Link>
         </div>
 
       </div>
