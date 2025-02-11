@@ -72,7 +72,7 @@ const sidebarData = {
     },
     {
       "name": "Users",
-      "icon": "bi bi-menu-button-wide",
+      "icon": "bi bi-person",
       "sub_items": [
         {
           "name": "Create User",
@@ -88,7 +88,7 @@ const sidebarData = {
     },
     {
       "name": "Branches",
-      "icon": "bi bi-journal-text",
+      "icon": "bi bi-building",
       "sub_items": [
         {
           "name": "Create Branch",
@@ -97,54 +97,54 @@ const sidebarData = {
         },
         {
           "name": "Branch List",
-          "link": "forms-validation.html",
+          "link": "branch_list",
           "icon": "bi bi-circle"
         }
       ]
     },
     {
       "name": "Tasks",
-      "icon": "bi bi-layout-text-window-reverse",
+      "icon": "bi bi-stickies",
       "sub_items": [
         {
           "name": "Create Task",
-          "link": "tables-general.html",
+          "link": "Create_task",
           "icon": "bi bi-circle"
         },
         {
           "name": "Unassigned Task",
-          "link": "tables-data.html",
+          "link": "unassigend_task",
           "icon": "bi bi-circle"
         },
         {
           "name": "Assigned Task",
-          "link": "tables-general.html",
+          "link": "assigend_task",
           "icon": "bi bi-circle"
         },
         {
           "name": "Pending Task",
-          "link": "tables-data.html",
+          "link": "pending_task",
           "icon": "bi bi-circle"
         },
         {
           "name": "Completed Task",
-          "link": "tables-data.html",
+          "link": "completed_task",
           "icon": "bi bi-circle"
         }
       ]
     },
     {
       "name": "Accessories",
-      "icon": "bi bi-gem",
+      "icon": "bi bi-tools",
       "sub_items": [
         {
-          "name": "Create Accessorires",
-          "link": "icons-bootstrap.html",
+          "name": "Create Accessories",
+          "link": "create_accessories",
           "icon": "bi bi-circle"
         },
         {
           "name": "Accessories Listings",
-          "link": "icons-remix.html",
+          "link": "accessories_list",
           "icon": "bi bi-circle"
         }
       ]
@@ -164,25 +164,10 @@ const sidebarData = {
       "icon": "bi bi-question-circle"
     },
     {
-      "name": "Contact",
-      "link": "pages-contact.html",
-      "icon": "bi bi-envelope"
+      "name": "Forgot Password",
+      "link": "forgot_Password",
+      "icon": "bi bi-key-fill"
     },
-    {
-      "name": "Register",
-      "link": "pages-register.html",
-      "icon": "bi bi-card-list"
-    },
-    {
-      "name": "Login",
-      "link": "pages-login.html",
-      "icon": "bi bi-box-arrow-in-right"
-    },
-    {
-      "name": "Error 404",
-      "link": "pages-error-404.html",
-      "icon": "bi bi-dash-circle"
-    }
   ],
   "technician": [
     {
@@ -233,9 +218,19 @@ const sidebarData = {
     },
     {
       "name": "Profile",
-      "link": "users-profile.html",
+      "link": "profiles",
       "icon": "bi bi-person"
-    }
+    },
+    {
+      "name": "F.A.Q",
+      "link": "pages-faq.html",
+      "icon": "bi bi-question-circle"
+    },
+    {
+      "name": "Forgot Password",
+      "link": "forgot_Password",
+      "icon": "bi bi-key-fill"
+    },
   ]
 };
   export default sidebarData;
