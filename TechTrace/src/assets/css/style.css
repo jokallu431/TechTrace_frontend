@@ -834,10 +834,13 @@ h6 {
   flex-shrink: 0;
   flex-grow: 0;
 }
-
+.dashboard .unassigned-card .card-icon {
+  color: #545455;
+  background: #dcdce0;
+}
 .dashboard .sales-card .card-icon {
   color: #4154f1;
-  background: #f6f6fe;
+  background: #d7d7ec;
 }
 
 .dashboard .revenue-card .card-icon {

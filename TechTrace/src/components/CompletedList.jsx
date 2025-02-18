@@ -82,7 +82,7 @@ const Completed_List = () => {
                             </Link>
                           </li>
                           <li className="list-inline-item">
-                            <Link to={`../view/${pendingList.task_Id}`} className="px-2 text-primary">
+                            <Link to={`./view_task/${pendingList.task_Id}`} className="px-2 text-primary">
                               <i className="bx bx-show font-size-18"></i>
                             </Link>
                           </li>

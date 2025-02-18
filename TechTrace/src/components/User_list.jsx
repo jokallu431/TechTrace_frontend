@@ -202,7 +202,7 @@
 
 import React, { useEffect, useState } from "react";
 import "../App.css";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { loadUserList } from "./api";
 import Pagination from "./Pagination"; // Import the Pagination component
 
@@ -216,13 +216,44 @@ const Users_List = () => {
       (data) => setUsersList(data),
       () => setUsersList([])
     );
-  }, []);
+  }, [UsersList]);
 
   const totalPages = Math.ceil(UsersList.length / itemsPerPage);
   const displayedUsersList = UsersList.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  const navigate = useNavigate();
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(
+        `http://localhost:4000/users/delete_user/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const result = await response.json();
+      if (response.ok) {
+        alert("User deleted successfully!");
+        // Refresh the user list (optional: filter out the deleted user)
+        // setUsers(users.filter((user) => user._id !== id));
+        navigate("/dashboard");
+      } else {
+        alert(result.message || "Failed to delete user");
+      }
+    } catch (error) {
+      alert("Error deleting user");
+      console.error("Delete error:", error);
+    }
+  };
 
   return (
     <main id="main" className="main">
@@ -279,7 +310,7 @@ const Users_List = () => {
                               data-bs-placement="top"
                               title="Edit"
                               className="px-2 text-primary"
-                              to={`../edit/${UsersList._id}`}
+                              to={`./edit_user/${UsersList._id}`}
                             >
                               <i className="bx bx-pencil font-size-18"></i>
                             </Link>
@@ -297,7 +328,7 @@ const Users_List = () => {
                           </li>
                           <li className="list-inline-item">
                             <Link
-                              to={`../view/${UsersList._id}`}
+                              to={`./view_user/${UsersList._id}`}
                               data-bs-toggle="tooltip"
                               data-bs-placement="top"
                               title="View"
@@ -307,15 +338,15 @@ const Users_List = () => {
                             </Link>
                           </li>
                           <li className="list-inline-item">
-                            <Link
-                              to="delete"
+                            <button
+                              onClick={() => handleDelete(UsersList._id)}
                               data-bs-toggle="tooltip"
                               data-bs-placement="top"
                               title="Delete"
-                              className="px-2 text-primary"
+                              className="px-2 text-primary border-0 bg-transparent"
                             >
                               <i className="bx bx-trash font-size-18"></i>
-                            </Link>
+                            </button>
                           </li>
                         </ul>
                       </td>

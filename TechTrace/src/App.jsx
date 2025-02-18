@@ -18,6 +18,10 @@ import Pending_List from "./components/PendingList";
 import UnassignedList from "./components/UnassignedList";
 import Assigned_List from "./components/AssignedList";
 import Completed_List from "./components/CompletedList";
+import ViewTask from "./components/tasks/View_task";
+import View_map from "./components/tasks/View_map";
+import Edit_user from "./components/users/Edit_user";
+import View_user from "./components/users/View_user";
 function App() {
  
   return (
@@ -37,6 +41,8 @@ function App() {
           <Route path="create_profile" element={<Create_profile />} />
           <Route path="user_list" element={<User_list />} />
           <Route path="profiles" element={<User_profile />} />
+          <Route path="/dashboard/user_list/edit_user/:id" element={<Edit_user />} />
+          <Route path="/dashboard/user_list/view_user/:id" element={<View_user />} />
           <Route path="create_branch" element={<CreateBranch />} />
           <Route path="branch_list" element={<BranchList />} />
           <Route path="Create_task" element={<CreateTask />} />
@@ -44,6 +50,11 @@ function App() {
           <Route path="unassigend_task" element={<UnassignedList />} />
           <Route path="assigend_task" element={<Assigned_List />} />
           <Route path="completed_task" element={<Completed_List />} />
+          <Route path="/dashboard/unassigend_task/view_task/:id" element={<ViewTask />} />
+          <Route path="/dashboard/assigend_task/view_task/:id" element={<ViewTask />} />
+          <Route path="/dashboard/pending_task/view_task/:id" element={<ViewTask />} />
+          <Route path="/dashboard/completed_task/view_task/:id" element={<ViewTask />} />
+          <Route path="/dashboard/unassigend_task/view_maps" element={<View_map />} />
           <Route path="create_accessories" element={<Create_Accessories />} />
           <Route path="accessories_list" element={<Accessories_List />} />
           <Route path="forgot_Password" element={<ForgotPassword />} />
