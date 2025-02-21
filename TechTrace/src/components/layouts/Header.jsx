@@ -1,7 +1,7 @@
-import logo from '../assets/img/tech_logo.png'
+import logo from '../../assets/img/tech_logo.png'
 import { Link, useNavigate } from 'react-router'
 import React, {useState,useEffect}from 'react'
-import { verifyUser } from './api';
+import { verifyUser } from '../api';
 
 const Header = ({ toggleSidebar }) => {
   const navigate = useNavigate();

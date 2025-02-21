@@ -1,27 +1,28 @@
-import { useState } from "react";
-import "./App.css";
-import Login from "./components/Login";
-import Tech_Layout from "./components/Tech_Layout";
-import { BrowserRouter,Routes,Route } from "react-router";
-import Layout from "./components/Layout";
-import User_profile from "./components/User_profile";
-import Create_profile from "./components/Create_profile";
-import User_list from "./components/User_list";
-import CreateBranch from "./components/CreateBranch";
-import BranchList from "./components/BranchList";
-import CreateTask from "./components/Create_Task";
-import { ToastContainer } from "react-toastify";
-import ForgotPassword from "./components/ForgotPassword";
-import Create_Accessories from "./components/Create_Accessories";
-import Accessories_List from "./components/Accessories_List";
-import Pending_List from "./components/PendingList";
-import UnassignedList from "./components/UnassignedList";
-import Assigned_List from "./components/AssignedList";
-import Completed_List from "./components/CompletedList";
-import ViewTask from "./components/tasks/View_task";
-import View_map from "./components/tasks/View_map";
+import React from "react";
 import Edit_user from "./components/users/Edit_user";
 import View_user from "./components/users/View_user";
+import "../src/components/App.css";
+import { BrowserRouter,Routes,Route } from "react-router";
+import { ToastContainer } from "react-toastify";
+import Layout from "./components/layouts/Layout";
+import Login from "./components/Pages/Login";
+import Tech_Layout from "./components/layouts/Tech_Layout";
+import User_list from "./components/users/User_list";
+import User_profile from "./components/users/User_profile";
+import Create_profile from "./components/users/Create_profile";
+import CreateBranch from "./components/branches/CreateBranch";
+import BranchList from "./components/branches/BranchList";
+import CreateTask from "./components/tasks/Create_Task";
+import Pending_List from "./components/tasks/PendingList";
+import UnassignedList from "./components/tasks/UnassignedList";
+import Assigned_List from "./components/tasks/AssignedList";
+import Completed_List from "./components/tasks/CompletedList";
+import ViewTask from "./components/tasks/View_task";
+import View_map from "./components/tasks/View_map";
+import Create_Accessories from "./components/accessories/Create_Accessories";
+import Accessories_List from "./components/accessories/Accessories_List";
+import ForgotPassword from "./components/Pages/ForgotPassword";
+import Edit_branch from "./components/branches/Edit_branch";
 function App() {
  
   return (
@@ -45,6 +46,8 @@ function App() {
           <Route path="/dashboard/user_list/view_user/:id" element={<View_user />} />
           <Route path="create_branch" element={<CreateBranch />} />
           <Route path="branch_list" element={<BranchList />} />
+          <Route path="/dashboard/branch_list/edit_branch/:branch_Id" element={<Edit_branch />} />
+          <Route path="/dashboard/branch_list/view_branch/:branch_Id" element={<View_user />} />
           <Route path="Create_task" element={<CreateTask />} />
           <Route path="pending_task" element={<Pending_List />} />
           <Route path="unassigend_task" element={<UnassignedList />} />

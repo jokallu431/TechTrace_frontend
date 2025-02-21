@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Main from "./Main";
-import Footer from "./Footer";
+import Footer from "../Pages/Footer";
 import Sidebar from "./Sidebar";
-import sidebarData from "./Data";
+import sidebarData from "../Data";
 import { Outlet, useLocation } from "react-router";
-import '../assets/css/style.css';
+import '../../assets/css/style.css';
 
 const Tech_Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

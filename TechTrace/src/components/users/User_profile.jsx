@@ -1,6 +1,6 @@
 import { Link,useNavigate} from "react-router";
 import React, {useRef,useState,useEffect}from 'react'
-import { verifyUser } from './api';
+import { verifyUser } from '../api';
 
 
 

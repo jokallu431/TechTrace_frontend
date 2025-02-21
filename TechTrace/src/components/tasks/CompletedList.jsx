@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import { Link } from "react-router";
-import { task_List } from "./api";
-import Pagination from "./Pagination"; // Import Pagination component
+import { task_List } from "../api";
+import Pagination from "../Pages/Pagination"; // Import Pagination component
 
-const Pending_List = () => {
+const Completed_List = () => {
   const [pending_list, setPending_list] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -27,7 +27,7 @@ const Pending_List = () => {
         <div className="row align-items-center">
           <div className="col-md-6">
             <h5 className="card-title">
-              Pending List <span className="text-muted fw-normal ms-2">({pending_list.length})</span>
+              Completed List <span className="text-muted fw-normal ms-2">({pending_list.length})</span>
             </h5>
           </div>
           <div className="col-md-6 d-flex justify-content-end">
@@ -122,4 +122,4 @@ const Pending_List = () => {
   );
 };
 
-export default Pending_List;
+export default Completed_List;

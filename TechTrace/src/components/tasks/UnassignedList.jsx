@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import { Link } from "react-router";
-import { task_List } from "./api";
-import Pagination from "./Pagination"; // Import Pagination component
+import { task_List } from "../api";
+import Pagination from "../Pages/Pagination"; // Import Pagination component
 
-const Completed_List = () => {
-  const [pending_list, setPending_list] = useState([]);
+const UnassignedList = () => {
+  const [unassignedList, setUnassignedList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
   useEffect(() => {
     task_List(
         (data) => {
-          const filteredData = data.filter(task => task.task_Status === "Pending");
-          setPending_list(filteredData),
-      () => setPending_list([])}
+          const filteredData = data.filter(task => task.task_Status === "Unassigned");
+          setUnassignedList(filteredData),
+      () => setUnassignedList([])}
     );
   }, []);
 
-  const totalPages = Math.ceil(pending_list.length / itemsPerPage);
-  const displayedpending_list = pending_list.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const totalPages = Math.ceil(unassignedList.length / itemsPerPage);
+  const displayedUnassignedList = unassignedList.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <main id="main" className="main">
@@ -27,7 +27,7 @@ const Completed_List = () => {
         <div className="row align-items-center">
           <div className="col-md-6">
             <h5 className="card-title">
-              Completed List <span className="text-muted fw-normal ms-2">({pending_list.length})</span>
+              Unassigned List <span className="text-muted fw-normal ms-2">({unassignedList.length})</span>
             </h5>
           </div>
           <div className="col-md-6 d-flex justify-content-end">
@@ -37,7 +37,7 @@ const Completed_List = () => {
           </div>
         </div>
 
-        {pending_list.length === 0 ? (
+        {unassignedList.length === 0 ? (
           <div className="d-flex justify-content-center">
             <div className="spinner-border" role="status">
               <span className="visually-hidden">Please wait...</span>
@@ -58,7 +58,7 @@ const Completed_List = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {displayedpending_list.map((pendingList, index) => (
+                  {displayedUnassignedList.map((pendingList, index) => (
                     <tr key={pendingList.task_Id}>
                       <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                       <td>
@@ -77,7 +77,7 @@ const Completed_List = () => {
                             </Link>
                           </li>
                           <li className="list-inline-item">
-                            <Link to={`tel:${pendingList.pendingList_Phone}`} className="px-2 text-primary">
+                            <Link to={`tel:${pendingList.task_Phone}`} className="px-2 text-primary">
                               <i className="bx bx-phone font-size-18"></i>
                             </Link>
                           </li>
@@ -104,7 +104,7 @@ const Completed_List = () => {
               <div className="col-sm-6">
                 <p className="mb-sm-0">
                   Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
-                  {Math.min(currentPage * itemsPerPage, pending_list.length)} of {pending_list.length} entries
+                  {Math.min(currentPage * itemsPerPage, unassignedList.length)} of {unassignedList.length} entries
                 </p>
               </div>
               <div className="col-sm-6">
@@ -122,4 +122,4 @@ const Completed_List = () => {
   );
 };
 
-export default Completed_List;
+export default UnassignedList;
