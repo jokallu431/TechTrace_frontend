@@ -2,24 +2,33 @@ import React, { useEffect, useState } from "react";
 import "../App.css";
 import { Link } from "react-router";
 import { task_List } from "../api";
-import Pagination from "../Pages/Pagination"; // Import Pagination component
+import Pagination from "../Pages/Pagination"; 
 
 const Completed_List = () => {
-  const [pending_list, setPending_list] = useState([]);
+  const [completed_list, setCompleted_list] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true); 
+  const [userRole, setUserRole] = useState("");
   const itemsPerPage = 5;
 
   useEffect(() => {
+    setLoading(true);
+    const role = localStorage.getItem("role");
+    setUserRole(role);
     task_List(
-        (data) => {
-          const filteredData = data.filter(task => task.task_Status === "Pending");
-          setPending_list(filteredData),
-      () => setPending_list([])}
+      (data) => {
+        const filteredData = data.filter(task => task.task_Status === "Completed");
+        setCompleted_list(filteredData);
+        setLoading(false); // Stop loading once data is received
+      },
+      () => {
+        setCompleted_list([]);
+        setLoading(false);
+      }
     );
   }, []);
-
-  const totalPages = Math.ceil(pending_list.length / itemsPerPage);
-  const displayedpending_list = pending_list.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const totalPages = Math.ceil(completed_list.length / itemsPerPage);
+  const displayedcompleted_list = completed_list.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <main id="main" className="main">
@@ -27,21 +36,30 @@ const Completed_List = () => {
         <div className="row align-items-center">
           <div className="col-md-6">
             <h5 className="card-title">
-              Completed List <span className="text-muted fw-normal ms-2">({pending_list.length})</span>
+              Completed List <span className="text-muted fw-normal ms-2">({completed_list.length})</span>
             </h5>
           </div>
-          <div className="col-md-6 d-flex justify-content-end">
-            <Link to="../edit" className="btn btn-primary">
-              <i className="bx bx-plus me-1"></i> Add New
-            </Link>
-          </div>
+          {userRole === "Admin" && (
+            <div className="col-md-6 d-flex justify-content-end">
+              <Link to="../Create_task" className="btn btn-primary">
+                <i className="bx bx-plus me-1"></i> Add New
+              </Link>
+            </div>
+          )}
         </div>
 
-        {pending_list.length === 0 ? (
+        {loading ? (
+          // Show loader while fetching data
           <div className="d-flex justify-content-center">
             <div className="spinner-border" role="status">
               <span className="visually-hidden">Please wait...</span>
             </div>
+          </div>
+        ) : completed_list.length === 0 ? (
+          // Show "No Data" message if the list is empty
+          <div className="text-center mt-5">
+            <h5 className="mt-3">Nothing to fetch</h5>
+            <p className="text-muted">No completed tasks available at the moment.</p>
           </div>
         ) : (
           <>
@@ -53,36 +71,34 @@ const Completed_List = () => {
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Address</th>
-                    <th>Description</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {displayedpending_list.map((pendingList, index) => (
-                    <tr key={pendingList.task_Id}>
+                  {displayedcompleted_list.map((completedList, index) => (
+                    <tr key={completedList.task_Id}>
                       <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                       <td>
                         <a href="#" className="text-body">
-                          {pendingList.task_Name}
+                          {completedList.task_Name}
                         </a>
                       </td>
-                      <td>{pendingList.task_Phone}</td>
-                      <td>{pendingList.task_Address}</td>
-                      <td>{pendingList.task_Desc}</td>
+                      <td>{completedList.task_Phone}</td>
+                      <td>{completedList.task_Address}</td>
                       <td>
                         <ul className="list-inline mb-0">
                           <li className="list-inline-item">
-                            <Link to={`../edit/${pendingList.task_Id}`} className="px-2 text-primary">
+                            <Link to={`./edit_task/${completedList.task_Id}`} className="px-2 text-primary">
                               <i className="bx bx-pencil font-size-18"></i>
                             </Link>
                           </li>
                           <li className="list-inline-item">
-                            <Link to={`tel:${pendingList.pendingList_Phone}`} className="px-2 text-primary">
+                            <Link to={`tel:${completedList.task_Phone}`} className="px-2 text-primary">
                               <i className="bx bx-phone font-size-18"></i>
                             </Link>
                           </li>
                           <li className="list-inline-item">
-                            <Link to={`./view_task/${pendingList.task_Id}`} className="px-2 text-primary">
+                            <Link to={`./view_task/${completedList.task_Id}`} className="px-2 text-primary">
                               <i className="bx bx-show font-size-18"></i>
                             </Link>
                           </li>
@@ -104,7 +120,7 @@ const Completed_List = () => {
               <div className="col-sm-6">
                 <p className="mb-sm-0">
                   Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
-                  {Math.min(currentPage * itemsPerPage, pending_list.length)} of {pending_list.length} entries
+                  {Math.min(currentPage * itemsPerPage, completed_list.length)} of {completed_list.length} entries
                 </p>
               </div>
               <div className="col-sm-6">

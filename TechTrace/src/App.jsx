@@ -23,6 +23,7 @@ import Create_Accessories from "./components/accessories/Create_Accessories";
 import Accessories_List from "./components/accessories/Accessories_List";
 import ForgotPassword from "./components/Pages/ForgotPassword";
 import Edit_branch from "./components/branches/Edit_branch";
+import Edit_task from "./components/tasks/Edit_task";
 function App() {
  
   return (
@@ -50,14 +51,18 @@ function App() {
           <Route path="/dashboard/branch_list/view_branch/:branch_Id" element={<View_user />} />
           <Route path="Create_task" element={<CreateTask />} />
           <Route path="pending_task" element={<Pending_List />} />
-          <Route path="unassigend_task" element={<UnassignedList />} />
-          <Route path="assigend_task" element={<Assigned_List />} />
+          <Route path="/dashboard/pending_task/view_task/:task_Id" element={<ViewTask />} />
+          <Route path="/dashboard/pending_task/edit_task/:task_Id" element={<Edit_task />} />
+          <Route path="unassigned_task" element={<UnassignedList />} />
+          <Route path="/dashboard/unassigned_task/view_task/:task_Id" element={<ViewTask />} />
+          <Route path="/dashboard/unassigned_task/edit_task/:task_Id" element={<Edit_task />} />
+          <Route path="/dashboard/unassigned_task/view_maps" element={<View_map />} />
+          <Route path="assigned_task" element={<Assigned_List />} />
+          <Route path="/dashboard/assigned_task/view_task/:task_Id" element={<ViewTask />} />
+          <Route path="/dashboard/assigned_task/edit_task/:task_Id" element={<Edit_task />} />
           <Route path="completed_task" element={<Completed_List />} />
-          <Route path="/dashboard/unassigend_task/view_task/:id" element={<ViewTask />} />
-          <Route path="/dashboard/assigend_task/view_task/:id" element={<ViewTask />} />
-          <Route path="/dashboard/pending_task/view_task/:id" element={<ViewTask />} />
-          <Route path="/dashboard/completed_task/view_task/:id" element={<ViewTask />} />
-          <Route path="/dashboard/unassigend_task/view_maps" element={<View_map />} />
+          <Route path="/dashboard/completed_task/view_task/:task_Id" element={<ViewTask />} />
+          <Route path="/dashboard/completed_task/edit_task/:task_Id" element={<Edit_task />} />
           <Route path="create_accessories" element={<Create_Accessories />} />
           <Route path="accessories_list" element={<Accessories_List />} />
           <Route path="forgot_Password" element={<ForgotPassword />} />

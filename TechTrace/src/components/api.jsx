@@ -82,4 +82,21 @@ function task_List(resolve, reject) {
       reject(null);
     });
 }
-export { verifyUser, loadUserList, branchList, accessoriesList, task_List };
+
+function task_List_Id(task_Id, resolve, reject) {
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  fetch(`http://localhost:4000/task/task_list/${task_Id}`, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      resolve(result);
+    })
+    .catch(() => {
+      reject(null);
+    });
+}
+
+export { verifyUser, loadUserList, branchList, accessoriesList, task_List, task_List_Id };

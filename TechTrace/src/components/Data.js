@@ -1,68 +1,3 @@
-// // data.js (or in the same file)
-// const sidebarData = [
-//     {
-//       title: "Admin Dashboard",
-//       icon: "fas fa-fw fa-tachometer-alt",
-//       link: "/dashboard",
-//       subMenu: [],
-//     },
-//     {
-//       title: "Task",
-//       icon: "fas fa-fw fa-wrench",
-//       link: "#",
-//       subMenu: [
-//         {
-//           title: "Pending Task",
-//           link: "/dashboard/pending",
-//         },
-//         {
-//           title: "Completed Task",
-//           link: "/dashboard/completed",
-//         },
-//         {
-//           title: "Unassigned Task",
-//           link: "/dashboard/unassigned",
-//         },
-//         {
-//           title: "Assigned Task",
-//           link: "/dashboard/assigned",
-//         },
-//       ],
-//     },
-//     {
-//       title: "User Profile",
-//       icon: "fas fa-fw fa-user",
-//       link: "#",
-//       subMenu: [
-//         {
-//           title: "Create User",
-//           link: "/dashboard/profile",
-//         },
-//         {
-//           title: "User List",
-//           link: "/dashboard/userlist",
-//         },
-//       ],
-//     },
-//     {
-//       title: "Pages",
-//       icon: "fas fa-fw fa-folder",
-//       link: "#",
-//       subMenu: [
-//         {
-//           title: "Login",
-//           link: "/login",
-//         },
-//         {
-//           title: "Forgot Password?",
-//           link: "/forgetpassword",
-//         },
-//       ],
-//     },
-//   ];
-  
-//   export default sidebarData;
-
 const sidebarData = {
   "admin": [
     {
@@ -113,12 +48,12 @@ const sidebarData = {
         },
         {
           "name": "Unassigned Task",
-          "link": "unassigend_task",
+          "link": "unassigned_task",
           "icon": "bi bi-circle"
         },
         {
           "name": "Assigned Task",
-          "link": "assigend_task",
+          "link": "assigned_task",
           "icon": "bi bi-circle"
         },
         {
@@ -158,11 +93,11 @@ const sidebarData = {
       "link": "profiles",
       "icon": "bi bi-person"
     },
-    {
-      "name": "F.A.Q",
-      "link": "pages-faq.html",
-      "icon": "bi bi-question-circle"
-    },
+    // {
+    //   "name": "F.A.Q",
+    //   "link": "pages-faq.html",
+    //   "icon": "bi bi-question-circle"
+    // },
     {
       "name": "Forgot Password",
       "link": "forgot_Password",
@@ -176,38 +111,38 @@ const sidebarData = {
       "icon": "bi bi-grid"
     },
     {
-      "name": "Tables",
-      "icon": "bi bi-layout-text-window-reverse",
+      "name": "Tasks",
+      "icon": "bi bi-stickies",
       "sub_items": [
         {
-          "name": "General Tables",
-          "link": "tables-general.html",
+          "name": "Unassigned Task",
+          "link": "unassigned_task",
           "icon": "bi bi-circle"
         },
         {
-          "name": "Data Tables",
-          "link": "tables-data.html",
+          "name": "Assigned Task",
+          "link": "assigned_task",
+          "icon": "bi bi-circle"
+        },
+        {
+          "name": "Pending Task",
+          "link": "pending_task",
+          "icon": "bi bi-circle"
+        },
+        {
+          "name": "Completed Task",
+          "link": "completed_task",
           "icon": "bi bi-circle"
         }
       ]
     },
     {
-      "name": "Charts",
-      "icon": "bi bi-bar-chart",
+      "name": "Accessories",
+      "icon": "bi bi-tools",
       "sub_items": [
         {
-          "name": "Chart.js",
-          "link": "charts-chartjs.html",
-          "icon": "bi bi-circle"
-        },
-        {
-          "name": "ApexCharts",
-          "link": "charts-apexcharts.html",
-          "icon": "bi bi-circle"
-        },
-        {
-          "name": "ECharts",
-          "link": "charts-echarts.html",
+          "name": "Accessories Listings",
+          "link": "accessories_list",
           "icon": "bi bi-circle"
         }
       ]
@@ -221,11 +156,11 @@ const sidebarData = {
       "link": "profiles",
       "icon": "bi bi-person"
     },
-    {
-      "name": "F.A.Q",
-      "link": "pages-faq.html",
-      "icon": "bi bi-question-circle"
-    },
+    // {
+    //   "name": "F.A.Q",
+    //   "link": "pages-faq.html",
+    //   "icon": "bi bi-question-circle"
+    // },
     {
       "name": "Forgot Password",
       "link": "forgot_Password",
