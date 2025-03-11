@@ -1,35 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import React from "react";
+import { ToastContainer } from "react-toastify";
+import Edit_user from "./components/users/Edit_user";
+import View_user from "./components/users/View_user";
+import "../src/components/App.css";
+import { BrowserRouter,Routes,Route } from "react-router";
+import Layout from "./components/layouts/Layout";
+import Login from "./components/Pages/Login";
+import Tech_Layout from "./components/layouts/Tech_Layout";
+import User_list from "./components/users/User_list";
+import User_profile from "./components/users/User_profile";
+import Create_profile from "./components/users/Create_profile";
+import CreateBranch from "./components/branches/CreateBranch";
+import BranchList from "./components/branches/BranchList";
+import CreateTask from "./components/tasks/Create_Task";
+import Pending_List from "./components/tasks/PendingList";
+import UnassignedList from "./components/tasks/UnassignedList";
+import Assigned_List from "./components/tasks/AssignedList";
+import Completed_List from "./components/tasks/CompletedList";
+import ViewTask from "./components/tasks/View_task";
+import View_map from "./components/tasks/View_map";
+import Create_Accessories from "./components/accessories/Create_Accessories";
+import Accessories_List from "./components/accessories/Accessories_List";
+import ForgotPassword from "./components/Pages/ForgotPassword";
+import Edit_branch from "./components/branches/Edit_branch";
+import Edit_task from "./components/tasks/Edit_task";
+import BranchView from "./components/branches/BranchView";
 function App() {
-  const [count, setCount] = useState(0)
-
+ 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+     <BrowserRouter>
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            {/* <Route path="/forgotPassword" element={<ForgotPassword />} /> */}
+          </Route>
+          {/* Protected Routes */}
+          <Route path="/dashboard" element={<Tech_Layout />}>
+          <Route path="create_profile" element={<Create_profile />} />
+          <Route path="user_list" element={<User_list />} />
+          <Route path="profiles" element={<User_profile />} />
+          <Route path="/dashboard/user_list/edit_user/:id" element={<Edit_user />} />
+          <Route path="/dashboard/user_list/view_user/:id" element={<View_user />} />
+          <Route path="create_branch" element={<CreateBranch />} />
+          <Route path="branch_list" element={<BranchList />} />
+          <Route path="/dashboard/branch_list/edit_branch/:branch_Id" element={<Edit_branch />} />
+          <Route path="/dashboard/branch_list/view_branch/:branch_Id" element={<BranchView />} />
+          <Route path="Create_task" element={<CreateTask />} />
+          <Route path="pending_task" element={<Pending_List />} />
+          <Route path="/dashboard/pending_task/view_task/:task_Id" element={<ViewTask />} />
+          <Route path="/dashboard/pending_task/edit_task/:task_Id" element={<Edit_task />} />
+          <Route path="unassigned_task" element={<UnassignedList />} />
+          <Route path="/dashboard/unassigned_task/view_task/:task_Id" element={<ViewTask />} />
+          <Route path="/dashboard/unassigned_task/edit_task/:task_Id" element={<Edit_task />} />
+          <Route path="/dashboard/unassigned_task/view_maps" element={<View_map />} />
+          <Route path="assigned_task" element={<Assigned_List />} />
+          <Route path="/dashboard/assigned_task/view_task/:task_Id" element={<ViewTask />} />
+          <Route path="/dashboard/assigned_task/edit_task/:task_Id" element={<Edit_task />} />
+          <Route path="completed_task" element={<Completed_List />} />
+          <Route path="/dashboard/completed_task/view_task/:task_Id" element={<ViewTask />} />
+          <Route path="/dashboard/completed_task/edit_task/:task_Id" element={<Edit_task />} />
+          <Route path="create_accessories" element={<Create_Accessories />} />
+          <Route path="accessories_list" element={<Accessories_List />} />
+          <Route path="forgot_Password" element={<ForgotPassword />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
