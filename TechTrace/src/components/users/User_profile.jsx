@@ -40,7 +40,7 @@ const User_profile = () => {
   }
 
   try {
-      const response = await fetch("http://localhost:4000/users/profile", {
+      const response = await fetch("https://tech-trace-backend.vercel.app/users/profile", {
         method: "POST",
         body: formData,
       });
@@ -95,7 +95,7 @@ const User_profile = () => {
             <div class="col-xl-4">
               <div class="card">
                 <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                  <img src={`http://localhost:4000${userDetails.image}`} style={{width:80,height:80}} alt="Profile" class="rounded-circle" />
+                  <img src={`https://tech-trace-backend.vercel.app${userDetails.image}`} style={{width:80,height:80}} alt="Profile" class="rounded-circle" />
                   <h2>{userDetails.name}</h2>
                   <div class="social-links mt-2">
                     <a href="#" class="twitter">

@@ -39,7 +39,7 @@ const Edit_branch = () => {
     const fetchBranches = async () => {
       try {
         const response = await fetch(
-          "http://localhost:4000/branch/branch_list"
+          "https://tech-trace-backend.vercel.app/branch/branch_list"
         );
         const data = await response.json();
         setBranch(data);
@@ -65,7 +65,7 @@ const Edit_branch = () => {
     formData.append("branch_Address", branch.branch_Address);
     try {
       const response = await fetch(
-        `http://localhost:4000/branch/update_branch/${branch_Id}`,
+        `https://tech-trace-backend.vercel.app/branch/update_branch/${branch_Id}`,
         {
             method: "PATCH",
             headers: {

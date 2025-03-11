@@ -76,7 +76,7 @@ const toastShown = useRef(false);
                   </label>
                   <div className="col-md-8 col-lg-9">
                     <img
-                      src={`http://localhost:4000${userData.image}`}
+                      src={`https://tech-trace-backend.vercel.app${userData.image}`}
                       alt="Profile"
                       style={{ width: 80, height: 70, borderRadius: 5 }}
                     />

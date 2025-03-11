@@ -21,7 +21,7 @@ const Create_Accessories = () => {
       console.log("Data before sending:", data);
     try {
       const response = await fetch(
-        "http://localhost:4000/accessories/create_accessories",
+        "https://tech-trace-backend.vercel.app/accessories/create_accessories",
         {
           method: "POST",
           headers: {

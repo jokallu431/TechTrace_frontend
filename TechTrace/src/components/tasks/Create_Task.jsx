@@ -64,7 +64,7 @@ const CreateTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:4000/task/create_task", {
+      const response = await fetch("https://tech-trace-backend.vercel.app/task/create_task", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

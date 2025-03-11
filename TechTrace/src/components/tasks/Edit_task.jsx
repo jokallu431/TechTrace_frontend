@@ -77,7 +77,7 @@ const Edit_task = () => {
     try {
       setLoading(true); // Set loading to true while submitting the form
       const response = await fetch(
-        `http://localhost:4000/task/update_task/${task_Id}`,
+        `https://tech-trace-backend.vercel.app/task/update_task/${task_Id}`,
         {
           method: "PATCH",
           headers: {

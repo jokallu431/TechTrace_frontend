@@ -10,7 +10,7 @@ const Create_profile = () => {
   useEffect(() => {
     const fetchBranches = async () => {
       try {
-        const response = await fetch("http://localhost:4000/branch/branch_list"); 
+        const response = await fetch("https://tech-trace-backend.vercel.app/branch/branch_list"); 
         const data = await response.json();
         setBranches(data);
         console.log("setBranches",branches_list);
@@ -96,7 +96,7 @@ const Create_profile = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:4000/users/profile", {
+      const response = await fetch("https://tech-trace-backend.vercel.app/users/profile", {
         method: "POST",
         body: formData,
       });

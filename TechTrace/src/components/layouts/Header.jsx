@@ -163,7 +163,7 @@ const Header = ({ toggleSidebar }) => {
                 data-bs-toggle="dropdown"
               >
                 <img
-                  src={`http://localhost:4000${userDetails.image}`}
+                  src={`https://tech-trace-backend.vercel.app${userDetails.image}`}
                   alt="Profile"
                   style={{ width: 40, height: 40 }}
                   className="rounded-circle"

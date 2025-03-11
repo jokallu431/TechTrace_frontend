@@ -17,7 +17,7 @@ const Footer = () => {
             {/* <!-- You can delete the links only if you purchased the pro version. --> */}
             {/* <!-- Licensing information: https://bootstrapmade.com/license/ --> */}
             {/* <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ --> */}
-            Designed by <a href="https://bootstrapmade.com/">Kallupurakal Joshua Francis.</a>
+            Designed by <a>Kallupurakal Joshua Francis.</a>
           </div>
         </footer>
         {/* <!-- End Footer --> */}

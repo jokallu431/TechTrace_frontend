@@ -9,7 +9,7 @@ function verifyUser(token, resolve, reject) {
     redirect: "follow",
   };
 
-  fetch("http://localhost:4000/users/verify", requestOptions)
+  fetch("https://tech-trace-backend.vercel.app/users/verify", requestOptions)
     .then((response) => response.json())
     .then((result) => {
       resolve(result);
@@ -25,7 +25,7 @@ function loadUserList(resolve, reject) {
     redirect: "follow",
   };
 
-  fetch("http://localhost:4000/users/technician_list", requestOptions)
+  fetch("https://tech-trace-backend.vercel.app/users/technician_list", requestOptions)
     .then((response) => response.json())
     .then((result) => {
       resolve(result);
@@ -41,7 +41,7 @@ function branchList(resolve, reject) {
     redirect: "follow",
   };
 
-  fetch("http://localhost:4000/branch/branch_list", requestOptions)
+  fetch("https://tech-trace-backend.vercel.app/branch/branch_list", requestOptions)
     .then((response) => response.json())
     .then((result) => {
       resolve(result);
@@ -57,7 +57,7 @@ function branch_List_Id(branch_Id, resolve, reject) {
     redirect: "follow",
   };
 
-  fetch(`http://localhost:4000/branch/branch_list/${branch_Id}`, requestOptions)
+  fetch(`https://tech-trace-backend.vercel.app/branch/branch_list/${branch_Id}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
       resolve(result);
@@ -73,7 +73,7 @@ function accessoriesList(resolve, reject) {
     redirect: "follow",
   };
 
-  fetch("http://localhost:4000/accessories/accessories_list", requestOptions)
+  fetch("https://tech-trace-backend.vercel.app/accessories/accessories_list", requestOptions)
     .then((response) => response.json())
     .then((result) => {
       resolve(result);
@@ -89,7 +89,7 @@ function task_List(resolve, reject) {
     redirect: "follow",
   };
 
-  fetch("http://localhost:4000/task/task_list", requestOptions)
+  fetch("https://tech-trace-backend.vercel.app/task/task_list", requestOptions)
     .then((response) => response.json())
     .then((result) => {
       resolve(result);
@@ -105,7 +105,7 @@ function task_List_Id(task_Id, resolve, reject) {
     redirect: "follow",
   };
 
-  fetch(`http://localhost:4000/task/task_list/${task_Id}`, requestOptions)
+  fetch(`https://tech-trace-backend.vercel.app/task/task_list/${task_Id}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
       resolve(result);

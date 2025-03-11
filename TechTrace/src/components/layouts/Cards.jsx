@@ -9,7 +9,7 @@ const Cards = () => {
     useEffect(() => {
         const fetchTaskList = async () => {
           try {
-            const response = await fetch("http://localhost:4000/task/task_list");
+            const response = await fetch("https://tech-trace-backend.vercel.app/task/task_list");
             const data = await response.json();
     
             // Count the pending tasks

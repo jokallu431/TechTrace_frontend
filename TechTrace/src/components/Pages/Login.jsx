@@ -29,7 +29,7 @@ const Login = () => {
         
         console.log("formdata",formData);
        
-        fetch("http://localhost:4000/users/login", requestOptions)
+        fetch("https://tech-trace-backend.vercel.app/users/login", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           console.log("Login successful:", result);
@@ -44,7 +44,7 @@ const Login = () => {
         myHeaders.append("Authorization", `Bearer ${token}`);
         myHeaders.append("Content-Type", "application/json");
     
-        fetch("http://localhost:4000/users/verify", {
+        fetch("https://tech-trace-backend.vercel.app/users/verify", {
           method: "GET",
           headers: myHeaders,
         })

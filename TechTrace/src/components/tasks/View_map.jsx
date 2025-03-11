@@ -26,14 +26,14 @@
 //   useEffect(() => {
 //     const fetchTaskDetails = async () => {
 //       try {
-//         const taskResponse = await fetch(`http://localhost:4000/task/task_list/${TASK_ID}`);
+//         const taskResponse = await fetch(`https://tech-trace-backend.vercel.app/task/task_list/${TASK_ID}`);
 //         const taskData = await taskResponse.json();
 
 //         if (!taskData) throw new Error("No task data found");
 
 //         const { task_Address, branch_Id } = taskData;
 
-//         const branchResponse = await fetch("http://localhost:4000/branch/branch_list");
+//         const branchResponse = await fetch("https://tech-trace-backend.vercel.app/branch/branch_list");
 //         const branchData = await branchResponse.json();
 
 //         if (!branchData || branchData.length === 0) throw new Error("No branch data found");
@@ -187,8 +187,8 @@ const TrackTechnician = () => {
     const fetchTaskDetails = async () => {
       try {
         const [taskRes, branchRes] = await Promise.all([
-          fetch(`http://localhost:4000/task/task_list/${TASK_ID}`),
-          fetch("http://localhost:4000/branch/branch_list")
+          fetch(`https://tech-trace-backend.vercel.app/task/task_list/${TASK_ID}`),
+          fetch("https://tech-trace-backend.vercel.app/branch/branch_list")
         ]);
         
         const taskData = await taskRes.json();

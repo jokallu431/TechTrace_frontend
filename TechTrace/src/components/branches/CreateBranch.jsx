@@ -40,7 +40,7 @@ const CreateBranch = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:4000/branch/create_branch",
+        "https://tech-trace-backend.vercel.app/branch/create_branch",
         {
           method: "POST",
           headers: {

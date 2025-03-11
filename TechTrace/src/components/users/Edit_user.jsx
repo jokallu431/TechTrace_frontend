@@ -45,7 +45,7 @@ const Edit_user = () => {
   useEffect(() => {
     const fetchBranches = async () => {
       try {
-        const response = await fetch("http://localhost:4000/branch/branch_list");
+        const response = await fetch("https://tech-trace-backend.vercel.app/branch/branch_list");
         const data = await response.json();
         setBranches(data);
       } catch (error) {
@@ -84,7 +84,7 @@ const Edit_user = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:4000/users/update_user/${id}`, {
+      const response = await fetch(`https://tech-trace-backend.vercel.app/users/update_user/${id}`, {
         method: "PATCH",
         body: formData,
       });
@@ -134,7 +134,7 @@ const Edit_user = () => {
                     {file ? (
                       <img src={file} alt="Profile" style={{ width: 80, height: 70, borderRadius: 5 }} />
                     ) : userData.image ? (
-                      <img src={`http://localhost:4000${userData.image}`} alt="Profile" style={{ width: 80, height: 70, borderRadius: 5 }} />
+                      <img src={`https://tech-trace-backend.vercel.app${userData.image}`} alt="Profile" style={{ width: 80, height: 70, borderRadius: 5 }} />
                     ) : null}
                     <div className="pt-2">
                       <input

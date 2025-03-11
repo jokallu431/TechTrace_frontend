@@ -32,7 +32,7 @@ const Users_List = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/users/delete_user/${id}`,
+        `https://tech-trace-backend.vercel.app/users/delete_user/${id}`,
         {
           method: "DELETE",
         }
