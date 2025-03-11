@@ -14,7 +14,7 @@ const Users_List = () => {
       (data) => setUsersList(data),
       () => setUsersList([])
     );
-  }, [UsersList]);
+  }, []);
 
   const totalPages = Math.ceil(UsersList.length / itemsPerPage);
   const displayedUsersList = UsersList.slice(

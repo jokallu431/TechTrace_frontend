@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { loadUserList } from "../api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,11 +18,16 @@ const View_user = () => {
   });
 
 //   const [file, setFile] = useState(null);
+const toastShown = useRef(false);
 
   useEffect(() => {
     loadUserList(
       (data) => {
         const user = data.find((u) => u._id === id);
+        if (!toastShown.current) {
+          toast.success("Data loaded successfully");
+          toastShown.current = true;
+        }
         if (user) {
           setUserData({
             name: user.name || "",
@@ -33,7 +38,7 @@ const View_user = () => {
             image: user.image || null,
           });
         }
-        toast.success("Data loaded successfully");
+        
       },
       () => {
         toast.error("Failed to load user data.");

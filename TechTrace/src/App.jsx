@@ -1,9 +1,9 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import Edit_user from "./components/users/Edit_user";
 import View_user from "./components/users/View_user";
 import "../src/components/App.css";
 import { BrowserRouter,Routes,Route } from "react-router";
-import { ToastContainer } from "react-toastify";
 import Layout from "./components/layouts/Layout";
 import Login from "./components/Pages/Login";
 import Tech_Layout from "./components/layouts/Tech_Layout";
@@ -24,6 +24,7 @@ import Accessories_List from "./components/accessories/Accessories_List";
 import ForgotPassword from "./components/Pages/ForgotPassword";
 import Edit_branch from "./components/branches/Edit_branch";
 import Edit_task from "./components/tasks/Edit_task";
+import BranchView from "./components/branches/BranchView";
 function App() {
  
   return (
@@ -48,7 +49,7 @@ function App() {
           <Route path="create_branch" element={<CreateBranch />} />
           <Route path="branch_list" element={<BranchList />} />
           <Route path="/dashboard/branch_list/edit_branch/:branch_Id" element={<Edit_branch />} />
-          <Route path="/dashboard/branch_list/view_branch/:branch_Id" element={<View_user />} />
+          <Route path="/dashboard/branch_list/view_branch/:branch_Id" element={<BranchView />} />
           <Route path="Create_task" element={<CreateTask />} />
           <Route path="pending_task" element={<Pending_List />} />
           <Route path="/dashboard/pending_task/view_task/:task_Id" element={<ViewTask />} />

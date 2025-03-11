@@ -308,7 +308,7 @@ const BranchList = () => {
                             </Link>
                           </li>
                           <li className="list-inline-item">
-                            <Link to={`../view/${branch._id}`} className="px-2 text-primary">
+                            <Link to={`./view_branch/${branch.branch_Id}`} className="px-2 text-primary">
                               <i className="bx bx-show font-size-18"></i>
                             </Link>
                           </li>

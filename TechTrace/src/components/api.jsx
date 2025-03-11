@@ -51,6 +51,22 @@ function branchList(resolve, reject) {
     });
 }
 
+function branch_List_Id(branch_Id, resolve, reject) {
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  fetch(`http://localhost:4000/branch/branch_list/${branch_Id}`, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      resolve(result);
+    })
+    .catch(() => {
+      reject(null);
+    });
+}
+
 function accessoriesList(resolve, reject) {
   const requestOptions = {
     method: "GET",
@@ -99,4 +115,4 @@ function task_List_Id(task_Id, resolve, reject) {
     });
 }
 
-export { verifyUser, loadUserList, branchList, accessoriesList, task_List, task_List_Id };
+export { verifyUser, loadUserList, branchList, accessoriesList, task_List, task_List_Id, branch_List_Id };

@@ -116,7 +116,23 @@ const Edit_task = () => {
             <li className="breadcrumb-item">
               <Link to={"/dashboard"}>Home</Link>
             </li>
-            <li className="breadcrumb-item active">Edit Task</li>
+            <li className="breadcrumb-item">
+                <Link
+                  to={
+                    task_Edit.task_Status === "Unassigned"
+                      ? "/dashboard/unassigned_task"
+                      : task_Edit.task_Status === "Assigned"
+                      ? "/dashboard/assigned_task"
+                      : task_Edit.task_Status === "Pending"
+                      ? "/dashboard/pending_task"
+                      : task_Edit.task_Status === "Completed"
+                      ? "/dashboard/completed_task"
+                      : "/dashboard"
+                  }
+                >
+                  Task {task_Edit.task_Status}
+                </Link>
+              </li>
             <li className="breadcrumb-item active">{task_Id}</li>
           </ol>
         </nav>
